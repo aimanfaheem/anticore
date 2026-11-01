@@ -379,7 +379,7 @@ SettingsPane {
             title: qsTr("Window transparency")
             description: Customize.translucentWindow ? qsTr("See your desktop through the window.")
                 : (Number(Theme.customTheme.windowOpacity) < 1
-                   ? qsTr("Takes effect when SCANCORE restarts.") : qsTr("See your desktop through the window. Takes effect after a restart."))
+                   ? qsTr("Takes effect when ANTICORE restarts.") : qsTr("See your desktop through the window. Takes effect after a restart."))
             Row {
                 spacing: 8
                 Level {
@@ -403,7 +403,7 @@ SettingsPane {
     SettingsGroup {
         visible: pane.custom
         title: qsTr("Background")
-        note: qsTr("PNG, JPEG, GIF or WebP, up to 40 MB. SCANCORE keeps its own copy. Animated backgrounds pause while a reader or the player is open.")
+        note: qsTr("PNG, JPEG, GIF or WebP, up to 40 MB. ANTICORE keeps its own copy. Animated backgrounds pause while a reader or the player is open.")
 
         Item {
             width: parent.width
@@ -644,7 +644,7 @@ SettingsPane {
         id: exportDialog
         fileMode: FileDialog.SaveFile
         defaultSuffix: "sct"
-        nameFilters: [qsTr("SCANCORE theme (*.sct)")]
+        nameFilters: [qsTr("ANTICORE theme (*.sct)")]
         selectedFile: (Theme.customTheme.name || "scancore-theme").replace(/[^\w\- ]+/g, "").trim().replace(/\s+/g, "-").toLowerCase() + ".sct"
         onAccepted: {
             const theme = Object.assign({}, pane.custom ? Theme.customTheme : {},
@@ -655,7 +655,7 @@ SettingsPane {
     FileDialog {
         id: importDialog
         fileMode: FileDialog.OpenFile
-        nameFilters: [qsTr("SCANCORE theme (*.sct)"), qsTr("All files (*)")]
+        nameFilters: [qsTr("ANTICORE theme (*.sct)"), qsTr("All files (*)")]
         onAccepted: pane.watch(Customize.importTheme(selectedFile), (theme) => { Router.applyTheme(theme); return "" })
     }
 

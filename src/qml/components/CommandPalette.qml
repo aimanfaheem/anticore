@@ -51,7 +51,7 @@ Popup {
               run: () => Router.setIncognito(App.settings.incognito !== true) }
         ]
         if (Lock.enabled)
-            commands.push({ icon: "lock", label: qsTr("Lock SCANCORE"), run: () => Lock.lockNow() })
+            commands.push({ icon: "lock", label: qsTr("Lock ANTICORE"), run: () => Lock.lockNow() })
         if (Account.signedIn)
             commands.push({ icon: "cloud", label: qsTr("Sync with scancore.onl"), run: () => Account.sync() })
         if (App.platform !== "android")

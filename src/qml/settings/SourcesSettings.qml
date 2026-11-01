@@ -5,7 +5,7 @@ import Scancore
 SettingsPane {
     id: pane
     title: qsTr("Sources")
-    subtitle: qsTr("The sites SCANCORE reads from")
+    subtitle: qsTr("The sites ANTICORE reads from")
     iconName: "globe"
 
     property var refreshTask: null
@@ -158,7 +158,7 @@ SettingsPane {
     readonly property int extensionCount: { App.dependOn(Extensions.revision); return Extensions.installedCount() }
     SettingsGroup {
         title: qsTr("Extensions")
-        note: qsTr("SCANCORE runs Mihon, Tachiyomi, Aniyomi, CloudStream, Echo and LNReader extensions from repositories you add. It has no repository of its own.")
+        note: qsTr("ANTICORE runs Mihon, Tachiyomi, Aniyomi, CloudStream, Echo and LNReader extensions from repositories you add. It has no repository of its own.")
         SettingRow {
             iconName: "puzzle"
             title: qsTr("Extensions")
@@ -171,7 +171,7 @@ SettingsPane {
         SettingRow {
             iconName: "plus"
             title: qsTr("Add a repository")
-            description: qsTr("Paste a repository link, or open one from a repository's page with SCANCORE.")
+            description: qsTr("Paste a repository link, or open one from a repository's page with ANTICORE.")
             ScButton { text: qsTr("Add"); onClicked: Router.addRepository("") }
         }
         SettingRow {
@@ -191,7 +191,7 @@ SettingsPane {
         SettingRow {
             iconName: "refresh-cw"
             title: qsTr("Update extensions automatically")
-            description: qsTr("Installs updates signed by keys you already trust when SCANCORE checks its repositories.")
+            description: qsTr("Installs updates signed by keys you already trust when ANTICORE checks its repositories.")
             Toggle { checked: App.settings.autoUpdateExtensions !== false; onToggled: App.setSetting("autoUpdateExtensions", checked) }
         }
     }
@@ -224,7 +224,7 @@ SettingsPane {
         SettingRow {
             iconName: "plus"
             title: pane.folders.length ? qsTr("Add another folder") : qsTr("Add a folder")
-            description: qsTr("Nothing is copied: SCANCORE reads the files where they are.")
+            description: qsTr("Nothing is copied: ANTICORE reads the files where they are.")
             Row {
                 spacing: 8
                 ScButton { text: qsTr("Add folder"); iconName: "folder-open"; onClicked: localFolderDialog.open() }
@@ -321,7 +321,7 @@ SettingsPane {
             title: qsTr("Extensions runtime")
             description: Extensions.busyWith === "runtime" ? Extensions.status
                 : Extensions.runtimeInstalled ? qsTr("Installed. Extensions from the repositories you add run in it.")
-                : qsTr("About 100 MB. Needed to run extensions on this computer; SCANCORE downloads it into the app data folder.")
+                : qsTr("About 100 MB. Needed to run extensions on this computer; ANTICORE downloads it into the app data folder.")
             Row {
                 spacing: 8
                 ScButton {
@@ -422,7 +422,7 @@ SettingsPane {
         readonly property var visibleSources: pane.shown(pane.comicSources, pane.allComics)
         visible: visibleSources.length > 0
         title: qsTr("Comics")
-        note: App.platform !== "android" ? "If a site asks for a browser check, the shield opens it inside SCANCORE once; the app then reuses the clearance." : ""
+        note: App.platform !== "android" ? "If a site asks for a browser check, the shield opens it inside ANTICORE once; the app then reuses the clearance." : ""
         Repeater {
             model: comicGroup.visibleSources
             SourceRow {}

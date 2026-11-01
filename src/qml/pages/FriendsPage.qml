@@ -233,7 +233,7 @@ Item {
                 SettingRow {
                     iconName: "share-2"
                     title: qsTr("Share a list from your library")
-                    description: qsTr("Anyone with the link sees it, and can add it all to their library in SCANCORE.")
+                    description: qsTr("Anyone with the link sees it, and can add it all to their library in ANTICORE.")
                     Row {
                         spacing: 8
                         Select {

@@ -180,7 +180,7 @@ Drawer {
                         visible: App.platform === "android"
                         iconName: "share-2"
                         tip: qsTr("Share")
-                        onClicked: App.shareText(qsTr("Watch %1 with me in SCANCORE: join the party with the code %2")
+                        onClicked: App.shareText(qsTr("Watch %1 with me in ANTICORE: join the party with the code %2")
                                                  .arg(Party.state.anime ? Party.state.anime.title : panel.anime.title || "").arg(Party.code), qsTr("Watch party"))
                     }
                 }

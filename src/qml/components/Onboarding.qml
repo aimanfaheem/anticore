@@ -225,7 +225,7 @@ Rectangle {
             Text {
                 visible: root.width >= 400
                 anchors.verticalCenter: parent.verticalCenter
-                text: Theme.retro ? "scancore" : "SCANCORE"
+                text: Theme.retro ? "anticore" : "ANTICORE"
                 color: Theme.text
                 font.family: Theme.fontDisplay
                 font.pixelSize: 14
@@ -254,7 +254,7 @@ Rectangle {
                 variant: "plain"
                 compact: true
                 text: Theme.retro ? qsTr("skip") : qsTr("Skip")
-                Accessible.description: qsTr("Close the welcome and start using SCANCORE")
+                Accessible.description: qsTr("Close the welcome and start using ANTICORE")
                 onClicked: root.finish()
             }
         }
@@ -796,7 +796,7 @@ Rectangle {
                     Text {
                         visible: root.from === "new"
                         width: parent.width
-                        text: qsTr("SCANCORE comes with its own sources for comics, novels and anime. If you have a link to an extension repository, it can go here; the Extensions page takes one any time.")
+                        text: qsTr("ANTICORE comes with its own sources for comics, novels and anime. If you have a link to an extension repository, it can go here; the Extensions page takes one any time.")
                         color: Theme.textMuted
                         font.family: Theme.fontSans
                         font.pixelSize: Theme.textSm
@@ -1203,9 +1203,9 @@ Rectangle {
                     width: cards.cell
                     iconName: "bell"
                     title: qsTr("Get notified")
-                    body: qsTr("New chapters of what you follow, and news from SCANCORE.")
+                    body: qsTr("New chapters of what you follow, and news from ANTICORE.")
                     Repeater {
-                        model: [{ key: "notifyUpdates", title: qsTr("New chapters and episodes") }, { key: "announcements", title: qsTr("News from SCANCORE") }]
+                        model: [{ key: "notifyUpdates", title: qsTr("New chapters and episodes") }, { key: "announcements", title: qsTr("News from ANTICORE") }]
                         Row {
                             required property var modelData
                             width: parent.width

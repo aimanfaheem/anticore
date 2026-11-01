@@ -292,7 +292,7 @@ Item {
         Text {
             anchors.top: bars.bottom
             anchors.topMargin: 10
-            text: qsTr("SCANCORE Wrapped ") + page.year
+            text: qsTr("ANTICORE Wrapped ") + page.year
             color: page.soft
             font.family: Theme.fontSans
             font.pixelSize: Theme.textXs

@@ -73,7 +73,7 @@ AudioPlayer::AudioPlayer(QObject *parent) : QObject(parent), m_core(std::make_sh
     option("ytdl", "no");
     option("terminal", "no");
     option("idle", "yes");
-    option("audio-client-name", "SCANCORE");
+    option("audio-client-name", "ANTICORE");
     option("gapless-audio", "weak");
     option("cache", "yes");
     option("demuxer-max-bytes", "32MiB");

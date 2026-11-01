@@ -23,7 +23,7 @@ Rectangle {
         { key: "library", label: qsTr("Library"), icon: "library" },
         { key: "more", label: qsTr("More"), icon: "ellipsis" }
     ].filter(t => Router.sectionShown(t.key)
-                  && (["movies", "series", "games", "music"].indexOf(t.key) < 0 || Array.from(App.settings.shownMedia || ["comic", "novel", "anime"]).length < 3))
+                  && (["movies", "series", "games", "music"].indexOf(t.key) < 0 || Array.from(App.settings.shownMedia || ["comic", "novel", "anime", "movie", "series", "game"]).length < 3))
     readonly property int currentIndex: {
         const i = tabs.findIndex(t => t.key === current)
         return i >= 0 ? i : tabs.length - 1

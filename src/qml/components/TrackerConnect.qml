@@ -33,12 +33,12 @@ Column {
     property var task: null
     readonly property bool waiting: task !== null && task.loading
     // What is happening, for the row's description; empty when idle.
-    readonly property string status: expired ? qsTr("%1 signed SCANCORE out, so progress is not reaching it. Connect again.").arg(label)
+    readonly property string status: expired ? qsTr("%1 signed ANTICORE out, so progress is not reaching it. Connect again.").arg(label)
         : connected ? qsTr("Connected as ") + info.name
         : auth === "password" && entering ? qsTr("Your password goes only to %1.").arg(label)
         : auth === "token" && entering ? qsTr("Sign in on the page that opened, then paste the token it shows.")
         : waiting && auth === "pin" ? (Trackers.pin.code ? qsTr("Enter %1 on the page that opened.").arg(Trackers.pin.code) : qsTr("Asking Simkl for a code…"))
-        : waiting && auth === "oauth" ? (service === "comick" ? qsTr("Waiting for you to allow SCANCORE on the page that opened…")
+        : waiting && auth === "oauth" ? (service === "comick" ? qsTr("Waiting for you to allow ANTICORE on the page that opened…")
                                                               : qsTr("Waiting for you to sign in on the page that opened…"))
         : waiting ? qsTr("Signing in…")
         : ""
@@ -72,7 +72,7 @@ Column {
             // browser, and pasted.
             if (App.platform === "android") {
                 awaitingAniList = true
-                if (App.openSiteCheck(Trackers.anilistAuthorizeUrl(), qsTr("Sign in to AniList and allow SCANCORE; this closes by itself."), qsTr("Cancel")))
+                if (App.openSiteCheck(Trackers.anilistAuthorizeUrl(), qsTr("Sign in to AniList and allow ANTICORE; this closes by itself."), qsTr("Cancel")))
                     return
                 awaitingAniList = false
             } else if (App.webEngine) {

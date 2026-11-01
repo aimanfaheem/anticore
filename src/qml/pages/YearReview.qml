@@ -139,7 +139,7 @@ Item {
                         }
                         Text {
                             anchors.verticalCenter: parent.verticalCenter
-                            text: page.year + qsTr(" in SCANCORE")
+                            text: page.year + qsTr(" in ANTICORE")
                             color: Theme.text
                             font.family: Theme.fontDisplay
                             font.pixelSize: Theme.text2xl

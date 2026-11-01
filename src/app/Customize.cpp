@@ -72,7 +72,7 @@ QString storeBackground(const QByteArray &data, const QString &type) {
     if (!QFileInfo::exists(path)) {
         QSaveFile file(path);
         if (!file.open(QIODevice::WriteOnly) || file.write(data) != data.size() || !file.commit())
-            throw Error(QStringLiteral("Could not save the background in SCANCORE's data folder."));
+            throw Error(QStringLiteral("Could not save the background in ANTICORE's data folder."));
     }
     for (const auto &old : dir.entryList({QStringLiteral("background-*")}, QDir::Files))
         if (old != name)
@@ -214,7 +214,7 @@ Task *Customize::exportTheme(const QVariantMap &theme, const QUrl &target) {
         QJsonObject root{{"format", "scancore-theme"},
                          {"version", 2},
                          {"name", theme.value("name").toString().left(80)},
-                         {"app", QStringLiteral("SCANCORE ") + QCoreApplication::applicationVersion()},
+                         {"app", QStringLiteral("ANTICORE ") + QCoreApplication::applicationVersion()},
                          {"colors", QJsonObject{{"window", theme.value("base").toString()},
                                                 {"accent", theme.value("accent").toString()}}},
                          {"window", QJsonObject{{"opacity", theme.value("windowOpacity", 1.0).toDouble()},

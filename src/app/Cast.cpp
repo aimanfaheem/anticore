@@ -662,7 +662,7 @@ void Cast::play(const QString &deviceId, const QVariantMap &video, const QString
     m_error.clear();
     if (url.isEmpty()) {
         m_state = QStringLiteral("error");
-        m_error = QStringLiteral("SCANCORE could not share the video on this network.");
+        m_error = QStringLiteral("ANTICORE could not share the video on this network.");
         emit stateChanged();
         return;
     }

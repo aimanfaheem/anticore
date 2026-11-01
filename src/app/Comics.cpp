@@ -44,7 +44,7 @@ QHash<QString, qint64> g_searchTimes;
 std::shared_ptr<Source> requireSource(const QString &url) {
     auto source = Registry::forUrl(url);
     if (!source)
-        throw Error(QStringLiteral("SCANCORE does not support %1 yet.").arg(QUrl(url).host()));
+        throw Error(QStringLiteral("ANTICORE does not support %1 yet.").arg(QUrl(url).host()));
     return source;
 }
 
@@ -560,7 +560,7 @@ Task *Comics::resolve(const QVariantMap &item, const QString &only, const QStrin
                 return QJsonDocument::fromJson(*cached).toVariant();
         const auto names = withLocalNames(catalogNames(item), item, language.isEmpty() ? contentLanguage() : language);
         if (std::all_of(names.begin(), names.end(), [](const QString &n) { return normalizedTitle(n).isEmpty(); }))
-            throw Error(QStringLiteral("This title has no name SCANCORE's sources could list it under."));
+            throw Error(QStringLiteral("This title has no name ANTICORE's sources could list it under."));
         // Where AniList says it can be read, on sources that take such links.
         const auto ids = item.value("ids").toMap();
         int anilistId = ids.value("anilist").toInt();

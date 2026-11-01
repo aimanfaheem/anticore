@@ -553,7 +553,7 @@ Item {
                     : page.category === "all" ? qsTr("Nothing saved here yet")
                     : qsTr("Nothing in %1").arg(page.categoryLabel)
                 emptyText: page.all.length === 0 || page.category === "all"
-                    ? qsTr("Open any comic, novel or anime and choose “Add to library” to keep it here. SCANCORE checks saved series for new chapters in the background.")
+                    ? qsTr("Open any comic, novel or anime and choose “Add to library” to keep it here. ANTICORE checks saved series for new chapters in the background.")
                     : page.category === "favourites" ? qsTr("Tap the heart on a saved series to keep it here.")
                     : qsTr("Choose a category on a saved series' page to move it here.")
                 emptyIcon: page.category === "favourites" ? "heart" : "library"

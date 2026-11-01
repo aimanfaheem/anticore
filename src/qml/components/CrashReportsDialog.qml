@@ -52,7 +52,7 @@ Dialog {
         spacing: 14
         Text {
             width: parent.width
-            text: dialog.afterCrash ? qsTr("SCANCORE closed unexpectedly") : dialog.file ? qsTr("Crash report") : qsTr("Crash reports and diagnostics")
+            text: dialog.afterCrash ? qsTr("ANTICORE closed unexpectedly") : dialog.file ? qsTr("Crash report") : qsTr("Crash reports and diagnostics")
             color: Theme.text
             font.family: Theme.fontDisplay
             font.pixelSize: Theme.textLg
@@ -62,7 +62,7 @@ Dialog {
         Text {
             width: parent.width
             text: dialog.file ? qsTr("Sending this report to the developer helps fix it. It holds the app's version, your system, where it stopped and the app's recent log: no library, history or account details.")
-                : qsTr("Reports from times SCANCORE closed unexpectedly. Diagnostics hold the app's recent log, for problems that are not crashes.")
+                : qsTr("Reports from times ANTICORE closed unexpectedly. Diagnostics hold the app's recent log, for problems that are not crashes.")
             color: Theme.textMuted
             font.family: Theme.fontSans
             font.pixelSize: Theme.textSm
@@ -134,7 +134,7 @@ Dialog {
                 text: App.platform === "android" ? qsTr("Share") : qsTr("Copy")
                 iconName: App.platform === "android" ? "external-link" : "copy"
                 variant: "primary"
-                onClicked: dialog.send(dialog.text, qsTr("SCANCORE crash report"))
+                onClicked: dialog.send(dialog.text, qsTr("ANTICORE crash report"))
             }
             ScButton {
                 visible: dialog.file !== ""
@@ -153,7 +153,7 @@ Dialog {
                 visible: dialog.file === ""
                 text: qsTr("Copy diagnostics")
                 iconName: "copy"
-                onClicked: dialog.send(App.diagnostics(), qsTr("SCANCORE diagnostics"))
+                onClicked: dialog.send(App.diagnostics(), qsTr("ANTICORE diagnostics"))
             }
         }
     }

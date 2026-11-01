@@ -263,7 +263,7 @@ Dialog {
                 Option {
                     visible: dialog.builtIn
                     heading: qsTr("Built-in servers")
-                    detail: qsTr("The player SCANCORE has without extensions")
+                    detail: qsTr("The player ANTICORE has without extensions")
                     highlighted: !!dialog.current.builtIn
                     onClicked: dialog.choose({})
                 }

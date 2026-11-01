@@ -12,7 +12,7 @@ import Scancore
 // A page gets `sectionKey` and `current` (it is the section in view).
 FocusScope {
     id: pano
-    property string title: "scancore"
+    property string title: "anticore"
     property bool gradientTitle: true
     property string background: ""
     property string backgroundReferer: ""

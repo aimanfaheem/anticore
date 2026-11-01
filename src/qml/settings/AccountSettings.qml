@@ -505,7 +505,7 @@ SettingsPane {
                 width: parent.width
                 wrapMode: Text.Wrap
                 text: qsTr("Choose a folder that Syncthing, Dropbox, OneDrive, iCloud Drive or Nextcloud keeps the same on your computers. ")
-                    + qsTr("SCANCORE keeps a small file for each device in it and reads the others'.")
+                    + qsTr("ANTICORE keeps a small file for each device in it and reads the others'.")
                 color: Theme.textMuted
                 font.family: Theme.fontSans
                 font.pixelSize: Theme.textSm

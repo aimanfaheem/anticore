@@ -89,7 +89,7 @@ SettingsPane {
 
     SettingsGroup {
         title: qsTr("Language")
-        note: qsTr("Help translate SCANCORE: the translations are the .ts files in the i18n folder of the repository.")
+        note: qsTr("Help translate ANTICORE: the translations are the .ts files in the i18n folder of the repository.")
         SettingRow {
             iconName: "globe"
             title: qsTr("Language")
@@ -119,7 +119,7 @@ SettingsPane {
         Text {
             visible: look.retro
             x: 6; y: -8
-            text: "scancore"
+            text: "anticore"
             color: Theme.tile
             font.family: "Selawik"
             font.pixelSize: 30
@@ -171,7 +171,7 @@ SettingsPane {
             InlineField {
                 width: 180
                 text: Retro.title
-                placeholderText: "scancore"
+                placeholderText: "anticore"
                 maximumLength: 24
                 onEditingFinished: App.setSetting("retroTitle", text.trim())
             }
@@ -276,10 +276,10 @@ SettingsPane {
             Row {
                 spacing: 6
                 Repeater {
-                    model: [{ key: "comic", label: qsTr("Comics") }, { key: "novel", label: qsTr("Novels") }, { key: "anime", label: qsTr("Anime") }]
+                    model: [{ key: "comic", label: qsTr("Comics") }, { key: "novel", label: qsTr("Novels") }, { key: "anime", label: qsTr("Anime") }, { key: "movie", label: qsTr("Movies") }, { key: "series", label: qsTr("Series") }, { key: "game", label: qsTr("Games") }]
                     Chip {
                         required property var modelData
-                        readonly property var shown: { const s = Array.from(App.settings.shownMedia || []); return s.length ? s : ["comic", "novel", "anime"] }
+                        readonly property var shown: { const s = Array.from(App.settings.shownMedia || []); return s.length ? s : ["comic", "novel", "anime", "movie", "series", "game"] }
                         text: modelData.label
                         selected: shown.indexOf(modelData.key) >= 0
                         iconName: selected ? "check" : ""
@@ -481,11 +481,11 @@ SettingsPane {
         title: qsTr("Start")
         SettingRow {
             iconName: "house"
-            title: qsTr("Open SCANCORE on")
+            title: qsTr("Open ANTICORE on")
             description: qsTr("The page you see when the app starts.")
             Select {
                 model: [{ value: "home", label: "Home" }, { value: "comics", label: qsTr("Comics") }, { value: "novels", label: qsTr("Novels") },
-                        { value: "anime", label: qsTr("Anime") }, { value: "library", label: qsTr("Library") }, { value: "history", label: qsTr("History") }]
+                        { value: "anime", label: qsTr("Anime") }, { value: "movies", label: qsTr("Movies") }, { value: "series", label: qsTr("Series") }, { value: "games", label: qsTr("Games") }, { value: "library", label: qsTr("Library") }, { value: "history", label: qsTr("History") }]
                 value: App.settings.startSection || "home"
                 onPicked: (v) => App.setSetting("startSection", v)
             }

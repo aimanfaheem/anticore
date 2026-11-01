@@ -21,7 +21,7 @@ SettingsPane {
 
     SettingsGroup {
         title: qsTr("App lock")
-        note: Lock.enabled ? "" : qsTr("Ask for a PIN when SCANCORE starts and after it has been away for a while.")
+        note: Lock.enabled ? "" : qsTr("Ask for a PIN when ANTICORE starts and after it has been away for a while.")
             + (App.platform === "android" ? qsTr(" Fingerprint or face can unlock it too.") : "")
         SettingRow {
             iconName: Lock.enabled ? "lock" : "lock-open"
@@ -46,7 +46,7 @@ SettingsPane {
             visible: Lock.enabled
             iconName: "clock"
             title: qsTr("Lock again")
-            description: qsTr("After SCANCORE has been in the background this long.")
+            description: qsTr("After ANTICORE has been in the background this long.")
             Select {
                 title: qsTr("Lock again")
                 model: [{ value: -1, label: qsTr("Only when it starts") }, { value: 0, label: qsTr("Right away") },

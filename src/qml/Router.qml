@@ -18,7 +18,23 @@ QtObject {
         const media = { comics: "comic", novels: "novel", anime: "anime", movies: "movie", series: "series", games: "game" }[section]
         if (!media) return true
         const shown = Array.from(App.settings.shownMedia || [])
-        return shown.length === 0 || shown.indexOf(media) >= 0
+        if (shown.length === 0) return true
+        // Safe backward compatibility: if shownMedia represents the unmigrated legacy default (comic, novel, anime),
+        // treat all 6 categories as visible. Custom selections remain preserved.
+        if (shown.length === 3 && shown.indexOf("comic") >= 0 && shown.indexOf("novel") >= 0 && shown.indexOf("anime") >= 0)
+            return true
+        return shown.indexOf(media) >= 0
+    }
+
+    Component.onCompleted: {
+        // Safe backward-compat migration in QML if not yet migrated in persistent settings
+        if (!App.settings.anticoreMediaMigrated) {
+            const raw = Array.from(App.settings.shownMedia || [])
+            if (raw.length === 3 && raw.indexOf("comic") >= 0 && raw.indexOf("novel") >= 0 && raw.indexOf("anime") >= 0) {
+                setShownMedia(["comic", "novel", "anime", "movie", "series", "game"])
+            }
+            App.setSetting("anticoreMediaMigrated", true)
+        }
     }
     // Shows only these media (["comic", "novel", "anime"], at least one):
     // the tabs and sidebar, Home's sections and Retro's hub follow.
@@ -225,7 +241,7 @@ QtObject {
     function openSiteCheck(url) {
         // Never SCANCORE's own site or the sync server (the account's session).
         if (App.protectedSite(url)) {
-            toast(qsTr("SCANCORE does not open browser checks for its own site or your sync server."), "error")
+            toast(qsTr("ANTICORE does not open browser checks for its own site or your sync server."), "error")
             return
         }
         if (App.platform === "android") {
@@ -364,7 +380,7 @@ QtObject {
         }
         const name = t.name ? "“" + t.name + "”" : qsTr("The theme")
         if (!preset && t.windowOpacity < 1 && !Customize.translucentWindow && Customize.canRestart)
-            toast(name + qsTr(" is on. Restart SCANCORE to make the window see-through."), "success")
+            toast(name + qsTr(" is on. Restart ANTICORE to make the window see-through."), "success")
         else
             toast(name + qsTr(" is on"), "success")
     }

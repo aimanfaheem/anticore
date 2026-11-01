@@ -513,7 +513,7 @@ void install() {
     path.toWCharArray(g_widePath);
     g_widePath[std::min<qsizetype>(path.size(), 1023)] = 0;
 #endif
-    const auto header = QStringLiteral("SCANCORE crash report\nVersion: %1\nSystem: %2 (%3, %4)\nQt: %5\nStarted: %6\n")
+    const auto header = QStringLiteral("ANTICORE crash report\nVersion: %1\nSystem: %2 (%3, %4)\nQt: %5\nStarted: %6\n")
                             .arg(QCoreApplication::applicationVersion(), QSysInfo::prettyProductName(), QSysInfo::currentCpuArchitecture(),
                                  QSysInfo::kernelVersion(), QString::fromLatin1(qVersion()),
                                  QDateTime::currentDateTime().toString(Qt::ISODate))

@@ -92,7 +92,7 @@ Item {
                     Text {
                         anchors.verticalCenter: parent.verticalCenter
                         width: parent.width - 32 - allowBattery.width - 24
-                        text: qsTr("Battery optimisation pauses downloads when you leave SCANCORE.")
+                        text: qsTr("Battery optimisation pauses downloads when you leave ANTICORE.")
                         color: Theme.textMuted
                         font.family: Theme.fontSans
                         font.pixelSize: Theme.textSm

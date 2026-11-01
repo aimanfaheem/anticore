@@ -738,13 +738,13 @@ Task *App::importBackup(const QUrl &file) {
         const auto path = file.toLocalFile();
         QFile in(path);
         if (!in.open(QIODevice::ReadOnly) || in.read(16) != QByteArray("SQLite format 3\0", 16))
-            throw Error(QStringLiteral("That file is not a SCANCORE backup."));
+            throw Error(QStringLiteral("That file is not an ANTICORE backup."));
         in.close();
         const auto pending = Database::path() + QStringLiteral(".restore");
         QFile::remove(pending);
         if (!QFile::copy(path, pending))
             throw Error(QStringLiteral("Could not copy the backup."));
-        return QStringLiteral("Restart SCANCORE to finish restoring the backup.");
+        return QStringLiteral("Restart ANTICORE to finish restoring the backup.");
     });
 }
 
@@ -762,7 +762,7 @@ void App::startBackgroundWork() {
     // notifications) from Library::checkUpdates itself; a new SCANCORE
     // from here.
     connect(this, &App::updateAvailable, this, [](const QString &version, const QString &url) {
-        Notifications::post({QStringLiteral("app"), QStringLiteral("app:") + version, tr("SCANCORE %1 is available").arg(version),
+        Notifications::post({QStringLiteral("app"), QStringLiteral("app:") + version, tr("ANTICORE %1 is available").arg(version),
                              tr("See what is new and update."), QVariantMap{{"url", url}}, true});
     });
     // Announcements from scancore.onl, live while online.

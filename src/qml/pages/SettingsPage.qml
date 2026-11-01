@@ -28,7 +28,7 @@ Item {
           keywords: "updates new chapters check notifications tray background" },
         { key: "privacy", file: "PrivacySettings.qml", title: qsTr("Privacy"), subtitle: qsTr("Incognito mode and the app lock"), icon: "lock", tint: "rose",
           keywords: "incognito private history lock pin password fingerprint face biometric security" },
-        { key: "sources", file: "SourcesSettings.qml", title: qsTr("Sources"), subtitle: qsTr("The sites SCANCORE reads from"), icon: "globe", tint: "amber",
+        { key: "sources", file: "SourcesSettings.qml", title: qsTr("Sources"), subtitle: qsTr("The sites ANTICORE reads from"), icon: "globe", tint: "amber",
           keywords: "sites nsfw manifest novel pack extensions" },
         { key: "storage", file: "StorageSettings.qml", title: qsTr("Storage"), subtitle: qsTr("Cache, downloads and backups"), icon: "hard-drive", tint: "mono",
           keywords: "cache downloads folder backup restore export data" },
@@ -421,7 +421,7 @@ Item {
                 Text {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
-                    text: qsTr("SCANCORE ") + App.version + qsTr(" · Medium Dev")
+                    text: qsTr("ANTICORE ") + App.version + qsTr(" · Medium Dev")
                     color: Theme.textFaint
                     font.family: Theme.fontSans
                     font.pixelSize: Theme.textXs + 1

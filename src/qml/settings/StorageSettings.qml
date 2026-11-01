@@ -96,7 +96,7 @@ SettingsPane {
 
     SettingsGroup {
         title: qsTr("Backup")
-        note: qsTr("Restoring replaces what is on this device when SCANCORE next starts.")
+        note: qsTr("Restoring replaces what is on this device when ANTICORE next starts.")
         SettingRow {
             iconName: "shield-check"
             title: qsTr("Back up everything")
@@ -113,14 +113,14 @@ SettingsPane {
         id: exportDialog
         fileMode: FileDialog.SaveFile
         defaultSuffix: "scancore"
-        nameFilters: [qsTr("SCANCORE backup (*.scancore)")]
+        nameFilters: [qsTr("ANTICORE backup (*.scancore)")]
         selectedFile: "scancore-backup-" + Qt.formatDate(new Date(), "yyyy-MM-dd") + ".scancore"
         onAccepted: pane.report(App.exportBackup(selectedFile), qsTr("Backup saved"))
     }
     FileDialog {
         id: importDialog
         fileMode: FileDialog.OpenFile
-        nameFilters: [qsTr("SCANCORE backup (*.scancore)"), qsTr("All files (*)")]
+        nameFilters: [qsTr("ANTICORE backup (*.scancore)"), qsTr("All files (*)")]
         onAccepted: pane.report(App.importBackup(selectedFile), (r) => r)
     }
 }

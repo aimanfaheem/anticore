@@ -73,7 +73,7 @@ SettingsPane {
                 readonly property var look: ({
                     anilist: ["list", Theme.dark ? "#3db4f2" : "#0b7fc0", qsTr("Keep your AniList lists up to date.")],
                     mal: ["bookmark", Theme.dark ? "#6d8fe0" : "#2e51a2", qsTr("Keep your MyAnimeList lists up to date.")],
-                    comick: ["book-open", Theme.dark ? "#a78bfa" : "#7c3aed", qsTr("Keep your Comick library up to date, and bring it into SCANCORE.")],
+                    comick: ["book-open", Theme.dark ? "#a78bfa" : "#7c3aed", qsTr("Keep your Comick library up to date, and bring it into ANTICORE.")],
                     kitsu: ["heart", Theme.dark ? "#f87171" : "#e0533b", qsTr("Comics, novels and anime on Kitsu.")],
                     mangaupdates: ["book-open", Theme.dark ? "#fb923c" : "#c2410c", qsTr("Your MangaUpdates reading list, for comics and novels.")],
                     shikimori: ["list", Theme.dark ? "#94a3b8" : "#475569", qsTr("Comics, novels and anime on Shikimori.")],
@@ -343,7 +343,7 @@ SettingsPane {
     ConfirmDialog {
         id: forgetConfirm
         heading: qsTr("Forget these titles?")
-        message: "They stay wherever you imported them from; SCANCORE stops looking for them."
+        message: "They stay wherever you imported them from; ANTICORE stops looking for them."
         confirmText: qsTr("Forget all")
         destructive: true
         onConfirmed: Importer.forgetAll()

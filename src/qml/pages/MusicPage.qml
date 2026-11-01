@@ -267,7 +267,7 @@ Item {
                 emptyTitle: !page.sources.length ? qsTr("No music extensions yet")
                           : page.query.length ? qsTr("No songs found") : qsTr("Search for a song")
                 emptyText: !page.sources.length
-                    ? qsTr("Add a repository of music extensions in Extensions, then install one. SCANCORE doesn't come with any.")
+                    ? qsTr("Add a repository of music extensions in Extensions, then install one. ANTICORE doesn't come with any.")
                     : page.query.length ? "" : qsTr("These extensions have no list of their own; search them above.")
                 emptyIcon: "puzzle"
                 onRetry: page.askSources()

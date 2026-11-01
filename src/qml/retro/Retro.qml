@@ -11,7 +11,7 @@ QtObject {
 
     readonly property bool upperCase: App.settings.retroCase !== "lower"
     readonly property string title: typeof App.settings.retroTitle === "string" && App.settings.retroTitle.trim().length
-        ? App.settings.retroTitle.trim() : "scancore"
+        ? App.settings.retroTitle.trim() : "anticore"
     readonly property bool gradientTitle: App.settings.retroTitleColor !== "plain"
     // "recent": the art of what was read last; "theme": the custom theme's
     // picture (or nothing); "none".

@@ -20,7 +20,7 @@ ApplicationWindow {
     visible: true
     color: Theme.base
     font.family: Theme.fontSans
-    title: (props.series && props.series.title ? props.series.title + " · " : "") + "SCANCORE"
+    title: (props.series && props.series.title ? props.series.title + " · " : "") + "ANTICORE"
 
     Loader {
         id: content

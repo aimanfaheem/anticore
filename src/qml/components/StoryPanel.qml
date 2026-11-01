@@ -151,7 +151,7 @@ Column {
                     }
                     Text {
                         width: parent.width
-                        text: (seasonRow.modelData.point.seeded ? qsTr("From SCANCORE's list") : qsTr("Suggested by readers"))
+                        text: (seasonRow.modelData.point.seeded ? qsTr("From ANTICORE's list") : qsTr("Suggested by readers"))
                             + " · " + (seasonRow.modelData.point.score === 1 ? qsTr("1 vote") : qsTr("%1 votes").arg(seasonRow.modelData.point.score))
                         color: Theme.textMuted
                         font.family: Theme.fontSans
@@ -255,7 +255,7 @@ Column {
                         Text {
                             width: parent.width
                             text: [pointRow.form ? pointRow.form.title : "",
-                                   pointRow.modelData.seeded ? qsTr("From SCANCORE's list") : pointRow.modelData.submitted ? qsTr("Your suggestion") : qsTr("Suggested by readers")]
+                                   pointRow.modelData.seeded ? qsTr("From ANTICORE's list") : pointRow.modelData.submitted ? qsTr("Your suggestion") : qsTr("Suggested by readers")]
                                 .filter(s => s).join(" · ")
                             color: Theme.textMuted
                             font.family: Theme.fontSans

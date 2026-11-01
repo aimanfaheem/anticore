@@ -397,7 +397,7 @@ Rectangle {
             if (player.item && player.item.player) player.item.player.paused = true
             // The stream reaches the other player through SCANCORE.
             if (Anime.relayedExternally(video))
-                Router.toast(qsTr("Keep SCANCORE open while it plays there: the video comes through it."), "info")
+                Router.toast(qsTr("Keep ANTICORE open while it plays there: the video comes through it."), "info")
         } else
             Router.toast(qsTr("Could not open it there."), "error")
     }
@@ -809,7 +809,7 @@ Rectangle {
                     width: parent.width
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.Wrap
-                    text: qsTr("This copy of SCANCORE cannot play this video")
+                    text: qsTr("This copy of ANTICORE cannot play this video")
                     color: "white"
                     font.family: Theme.fontDisplay
                     font.pixelSize: Theme.textLg
@@ -820,7 +820,7 @@ Rectangle {
                     horizontalAlignment: Text.AlignHCenter
                     wrapMode: Text.Wrap
                     text: qsTr("Its built-in browser lacks the H.264 video codec. Watch this episode in your browser, or use ")
-                        + qsTr("the SCANCORE Flatpak or your distribution's package, which include it.")
+                        + qsTr("the ANTICORE Flatpak or your distribution's package, which include it.")
                     color: "#a1a1aa"
                     font.family: Theme.fontSans
                     font.pixelSize: Theme.textSm
@@ -836,7 +836,7 @@ Rectangle {
                         onClicked: App.openUrl(watch.currentUrl)
                     }
                     ScButton {
-                        text: qsTr("Get SCANCORE")
+                        text: qsTr("Get ANTICORE")
                         onClicked: App.openUrl("https://scancore.onl/desktop")
                     }
                 }
@@ -863,7 +863,7 @@ Rectangle {
                     : watch.nativeStream ? (watch.playError || (watch.videosTask && !watch.videosTask.loading
                         ? (watch.videosTask.ok ? (watch.videosTask.result.message || "") : watch.videosTask.error) : ""))
                     : !watch.streamsTask ? ""
-                    : Anime.playerEngine === "" ? qsTr("This build of SCANCORE has no embedded browser, which the ReAnime player needs.")
+                    : Anime.playerEngine === "" ? qsTr("This build of ANTICORE has no embedded browser, which the ReAnime player needs.")
                     : !watch.streamsTask.loading ? (watch.streamsTask.ok ? (watch.streamsTask.result.message || "") : watch.streamsTask.error) : ""
                 color: "#d4d4d8"
                 font.family: Theme.fontSans

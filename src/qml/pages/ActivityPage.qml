@@ -716,7 +716,7 @@ Item {
                         width: parent.width
                         wrapMode: Text.Wrap
                         text: page.stats && page.stats.since
-                            ? qsTr("Time counts while SCANCORE is in use: in a reader, playing an episode, or browsing. Chapters finished before time was kept come from your reading history.")
+                            ? qsTr("Time counts while ANTICORE is in use: in a reader, playing an episode, or browsing. Chapters finished before time was kept come from your reading history.")
                             : ""
                         color: Theme.textFaint
                         font.family: Theme.fontSans

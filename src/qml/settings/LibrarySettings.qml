@@ -12,7 +12,7 @@ SettingsPane {
         SettingRow {
             iconName: "refresh-cw"
             title: qsTr("Check for new chapters")
-            description: qsTr("Saved comics and novels are checked in the background while SCANCORE is open.")
+            description: qsTr("Saved comics and novels are checked in the background while ANTICORE is open.")
             Select {
                 model: [{ value: 0, label: qsTr("Never") }, { value: 1, label: qsTr("Every hour") }, { value: 2, label: qsTr("Every 2 hours") },
                         { value: 6, label: qsTr("Every 6 hours") }, { value: 24, label: qsTr("Once a day") }]
@@ -34,8 +34,8 @@ SettingsPane {
         }
         SettingRow {
             iconName: "megaphone"
-            title: qsTr("Announcements from SCANCORE")
-            description: qsTr("News about SCANCORE from scancore.onl, in Notifications as soon as they are posted.")
+            title: qsTr("Announcements from ANTICORE")
+            description: qsTr("News about ANTICORE from scancore.onl, in Notifications as soon as they are posted.")
             Toggle { checked: App.settings.announcements !== false; onToggled: App.setSetting("announcements", checked) }
         }
     }
@@ -207,8 +207,8 @@ SettingsPane {
         title: qsTr("Background")
         SettingRow {
             iconName: App.batteryRestricted ? "battery-warning" : "check"
-            title: App.batteryRestricted ? qsTr("Battery optimisation stops SCANCORE in the background")
-                                         : qsTr("SCANCORE can run in the background")
+            title: App.batteryRestricted ? qsTr("Battery optimisation stops ANTICORE in the background")
+                                         : qsTr("ANTICORE can run in the background")
             description: App.batteryRestricted
                 ? qsTr("Android closes it soon after you leave it, so new chapters are not checked, downloads pause and reading aloud stops.")
                 : qsTr("Update checks, downloads and reading aloud carry on when you leave the app.")

@@ -81,7 +81,7 @@ Dialog {
             width: parent.width
             visible: dialog.file === ""
             bottomPadding: 12
-            text: qsTr("SCANCORE is built with this open-source software. Choose one to read its licence.")
+            text: qsTr("ANTICORE is built with this open-source software. Choose one to read its licence.")
             color: Theme.textMuted
             font.family: Theme.fontSans
             font.pixelSize: Theme.textSm

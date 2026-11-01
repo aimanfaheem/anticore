@@ -429,6 +429,28 @@ int main(int argc, char *argv[]) {
         appState->setSetting(QStringLiteral("uiMode"), QStringLiteral("retro"));
     if (const auto accent = appState->settings().value(QStringLiteral("accent")).toString(); accent.startsWith(QLatin1String("metro-")))
         appState->setSetting(QStringLiteral("accent"), QStringLiteral("retro-") + accent.mid(6));
+    // ANTICORE: Migrate legacy shownMedia from SCANCORE defaults ("comic", "novel", "anime")
+    // to include new media categories ("movie", "series", "game"). Custom selections are preserved.
+    if (!Database::pref(QStringLiteral("setting.anticoreMediaMigrated")).toBool()) {
+        if (appState->settings().contains(QStringLiteral("shownMedia"))) {
+            const auto raw = appState->settings().value(QStringLiteral("shownMedia"));
+            QStringList list;
+            if (raw.canConvert<QStringList>()) {
+                list = raw.toStringList();
+            } else if (raw.canConvert<QVariantList>()) {
+                for (const auto &v : raw.toList())
+                    list.append(v.toString());
+            }
+            QSet<QString> set(list.begin(), list.end());
+            if (set.size() == 3 && set.contains(QStringLiteral("comic")) &&
+                set.contains(QStringLiteral("novel")) && set.contains(QStringLiteral("anime"))) {
+                appState->setSetting(QStringLiteral("shownMedia"),
+                    QVariantList{QStringLiteral("comic"), QStringLiteral("novel"), QStringLiteral("anime"),
+                                 QStringLiteral("movie"), QStringLiteral("series"), QStringLiteral("game")});
+            }
+        }
+        appState->setSetting(QStringLiteral("anticoreMediaMigrated"), true);
+    }
 #ifndef Q_OS_ANDROID
     QSystemTrayIcon tray(QApplication::windowIcon());
     QMenu trayMenu;

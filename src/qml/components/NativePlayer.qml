@@ -349,7 +349,7 @@ Item {
             width: parent.width
             horizontalAlignment: Text.AlignHCenter
             wrapMode: Text.Wrap
-            text: !mpv.available ? qsTr("This copy of SCANCORE has no video player for anime from extensions.") : mpv.error
+            text: !mpv.available ? qsTr("This copy of ANTICORE has no video player for anime from extensions.") : mpv.error
             color: "#d4d4d8"
             font.family: Theme.fontSans
             font.pixelSize: Theme.textMd

@@ -81,7 +81,7 @@ Item {
         id: removeDialog
         property var item: null
         heading: item ? qsTr("Remove ") + item.name + "?" : ""
-        message: qsTr("Its sources disappear from SCANCORE. Series in your library stay, and come back when you install it again.")
+        message: qsTr("Its sources disappear from ANTICORE. Series in your library stay, and come back when you install it again.")
         confirmText: qsTr("Remove")
         destructive: true
         onConfirmed: Extensions.uninstall(item.kind, item.pkg)
@@ -90,7 +90,7 @@ Item {
         id: removeRepoDialog
         property var repo: null
         heading: repo ? qsTr("Remove “") + repo.name + qsTr("”?") : ""
-        message: qsTr("Installed extensions stay installed, but they no longer get updates from it, and SCANCORE asks before trusting them again.")
+        message: qsTr("Installed extensions stay installed, but they no longer get updates from it, and ANTICORE asks before trusting them again.")
         confirmText: qsTr("Remove")
         destructive: true
         onConfirmed: Extensions.removeRepository(repo.url)
@@ -389,7 +389,7 @@ Item {
                     width: Math.min(parent.width, 460)
                     anchors.horizontalCenter: parent.horizontalCenter
                     horizontalAlignment: Text.AlignHCenter
-                    text: qsTr("Extensions come from repositories that other people run. Have a repository link? Paste it here, or open it from the repository's page with SCANCORE.")
+                    text: qsTr("Extensions come from repositories that other people run. Have a repository link? Paste it here, or open it from the repository's page with ANTICORE.")
                     color: Theme.textMuted
                     font.family: Theme.fontSans
                     font.pixelSize: Theme.textSm

@@ -38,7 +38,7 @@ Rectangle {
             spacing: 2
             Text {
                 width: parent.width
-                text: qsTr("SCANCORE ") + Updater.version + (Updater.state === "ready" ? qsTr(" is ready") : qsTr(" is out"))
+                text: qsTr("ANTICORE ") + Updater.version + (Updater.state === "ready" ? qsTr(" is ready") : qsTr(" is out"))
                 color: Theme.text
                 font.family: Theme.fontSans
                 font.pixelSize: Theme.textMd

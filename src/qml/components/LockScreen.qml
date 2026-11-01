@@ -59,7 +59,7 @@ Popup {
                 }
                 Text {
                     anchors.horizontalCenter: parent.horizontalCenter
-                    text: qsTr("SCANCORE is locked")
+                    text: qsTr("ANTICORE is locked")
                     color: Theme.text
                     font.family: Theme.fontDisplay
                     font.pixelSize: Theme.textXl

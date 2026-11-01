@@ -112,7 +112,7 @@ SettingsPane {
     SettingsGroup {
         visible: Anime.nativePlayerAvailable
         title: qsTr("Subtitles")
-        note: qsTr("For SCANCORE's player. Subtitles with their own styling keep it, apart from the size.")
+        note: qsTr("For ANTICORE's player. Subtitles with their own styling keep it, apart from the size.")
         SettingRow {
             iconName: "zoom-in"
             title: qsTr("Size")
@@ -196,7 +196,7 @@ SettingsPane {
     SettingsGroup {
         visible: Anime.nativePlayerAvailable && App.platform === "android"
         title: qsTr("Gestures")
-        note: qsTr("A tap shows or hides the controls. Brightness changes only while SCANCORE is open.")
+        note: qsTr("A tap shows or hides the controls. Brightness changes only while ANTICORE is open.")
         SettingRow {
             iconName: "move-vertical"
             title: qsTr("Swipe for brightness, volume and seeking")

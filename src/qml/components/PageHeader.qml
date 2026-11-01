@@ -41,7 +41,7 @@ Item {
         // Phone's pages had.
         Text {
             visible: Theme.retro
-            text: "SCANCORE"
+            text: "ANTICORE"
             color: Theme.text
             font.family: Theme.fontSans
             font.pixelSize: Theme.textSm

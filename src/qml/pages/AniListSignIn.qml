@@ -46,7 +46,7 @@ Rectangle {
                     font.weight: Font.DemiBold
                 }
                 Text {
-                    text: page.task ? qsTr("Connecting…") : qsTr("Sign in and allow SCANCORE; this page closes by itself.")
+                    text: page.task ? qsTr("Connecting…") : qsTr("Sign in and allow ANTICORE; this page closes by itself.")
                     color: Theme.textMuted
                     font.family: Theme.fontSans
                     font.pixelSize: Theme.textSm
