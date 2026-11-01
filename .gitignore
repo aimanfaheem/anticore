@@ -1,15 +1,15 @@
+bin/
+*.bat
 build/
 .cache/
 *.user
 .qmlls.ini
 aqtinstall.log
-
 # Flatpak builds and the exported repository
 .flatpak-builder/
 flatpak-build/
 builddir/
 /repo/
-
 # makepkg output when testing the AUR package
 packaging/aur/src/
 packaging/aur/pkg/

@@ -44,7 +44,7 @@
     <application
         android:name="org.qtproject.qt.android.bindings.QtApplication"
         android:hardwareAccelerated="true"
-        android:label="SCANCORE"
+        android:label="ANTICORE"
         android:icon="@mipmap/ic_launcher"
         android:banner="@drawable/tv_banner"
         android:enableOnBackInvokedCallback="false"
@@ -54,7 +54,7 @@
         <activity
             android:name="org.qtproject.qt.android.bindings.QtActivity"
             android:configChanges="orientation|uiMode|screenLayout|screenSize|smallestScreenSize|layoutDirection|locale|fontScale|keyboard|keyboardHidden|navigation|mcc|mnc|density"
-            android:label="SCANCORE"
+            android:label="ANTICORE"
             android:launchMode="singleTop"
             android:screenOrientation="unspecified"
             android:exported="true">
@@ -106,7 +106,7 @@
         <!-- The home-screen widget: Continue, and new chapters. -->
         <receiver
             android:name="com.mediumdev.scancore.HomeWidget"
-            android:label="SCANCORE"
+            android:label="ANTICORE"
             android:exported="false">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

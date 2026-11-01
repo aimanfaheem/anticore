@@ -1,10 +1,10 @@
 <div align="center">
 
-<img src="resources/branding/scancore.svg" width="96" alt="SCANCORE">
+<img src="resources/branding/scancore.svg" width="96" alt="ANTICORE">
 
-# SCANCORE
+# ANTICORE
 
-### Comics, novels and anime in one app
+### Comics, novels, anime, movies, series and games in one app
 Read and watch from the sources you choose, on your phone and your computer.
 
 [![Discord](https://img.shields.io/badge/discord-join-5865F2?logo=discord&logoColor=white&labelColor=27303D)](https://scancore.onl/discord)

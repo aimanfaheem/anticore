@@ -333,7 +333,7 @@ int main(int argc, char *argv[]) {
     Application::setOrganizationName(QStringLiteral("Medium Dev"));
     Application::setOrganizationDomain(QStringLiteral("mediumdev.com"));
     Application::setApplicationName(QStringLiteral("SCANCORE"));
-    Application::setApplicationDisplayName(QStringLiteral("SCANCORE"));
+    Application::setApplicationDisplayName(QStringLiteral("ANTICORE"));
     Application::setApplicationVersion(QStringLiteral(SCANCORE_VERSION));
     // Development hook for testing updates.
     if (qEnvironmentVariableIsSet("SCANCORE_PRETEND_VERSION"))
@@ -432,11 +432,11 @@ int main(int argc, char *argv[]) {
 #ifndef Q_OS_ANDROID
     QSystemTrayIcon tray(QApplication::windowIcon());
     QMenu trayMenu;
-    trayMenu.addAction(QStringLiteral("Open SCANCORE"), appState, &App::activateRequested);
+    trayMenu.addAction(QStringLiteral("Open ANTICORE"), appState, &App::activateRequested);
     trayMenu.addSeparator();
     trayMenu.addAction(QStringLiteral("Quit"), &app, &QApplication::quit);
     tray.setContextMenu(&trayMenu);
-    tray.setToolTip(QStringLiteral("SCANCORE"));
+    tray.setToolTip(QStringLiteral("ANTICORE"));
     QObject::connect(&tray, &QSystemTrayIcon::activated, appState, [appState](QSystemTrayIcon::ActivationReason reason) {
         if (reason == QSystemTrayIcon::Trigger)
             emit appState->activateRequested();

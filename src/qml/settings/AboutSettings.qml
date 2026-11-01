@@ -79,7 +79,7 @@ SettingsPane {
                     Row {
                         spacing: 8
                         Text {
-                            text: "SCANCORE"
+                            text: "ANTICORE"
                             color: Theme.text
                             font.family: Theme.fontDisplay
                             font.pixelSize: Theme.textXl
@@ -164,7 +164,7 @@ SettingsPane {
         SettingRow { iconName: "triangle-alert"; title: qsTr("Report a problem"); description: qsTr("Opens GitHub Issues"); clickable: true; external: true; onClicked: App.openUrl("https://github.com/medium-gh/scancore/issues/new/choose") }
         SettingRow { iconName: "file-text"; title: qsTr("Crash reports and diagnostics"); description: qsTr("To send to the developer when something goes wrong"); clickable: true; onClicked: crashReports.showAll() }
         SettingRow { iconName: "sparkles"; title: qsTr("Welcome tour"); description: qsTr("See the introduction again"); clickable: true; onClicked: Router.shell.showWelcome() }
-        SettingRow { iconName: "file-text"; title: qsTr("Licences"); description: qsTr("The open-source software inside SCANCORE"); clickable: true; onClicked: licences.start() }
+        SettingRow { iconName: "file-text"; title: qsTr("Licences"); description: qsTr("The open-source software inside ANTICORE"); clickable: true; onClicked: licences.start() }
     }
 
     LicencesDialog { id: licences }
