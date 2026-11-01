@@ -24,7 +24,7 @@ QtObject {
     property string hubSection: "explore"
     property bool onHub: true
 
-    readonly property var sectionKeys: ["explore", "recent", "library", "comics", "novels", "anime", "music"]
+    readonly property var sectionKeys: ["explore", "recent", "library", "comics", "novels", "anime", "movies", "series", "games", "music"]
     readonly property var defaultSections: ["explore", "recent", "library", "comics", "novels", "anime"]
 
     function sectionLabel(key) {
@@ -35,6 +35,9 @@ QtObject {
         case "comics": return qsTr("Comics")
         case "novels": return qsTr("Novels")
         case "anime": return qsTr("Anime")
+        case "movies": return qsTr("Movies")
+        case "series": return qsTr("Series")
+        case "games": return qsTr("Games")
         case "music": return qsTr("Music")
         }
         return key

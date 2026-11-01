@@ -10,7 +10,7 @@ ApplicationWindow {
     minimumWidth: 360
     minimumHeight: 560
     visible: true
-    title: "SCANCORE"
+    title: "ANTICORE"
     // Clear only when the window has an alpha channel to show through.
     color: Customize.translucentWindow ? "transparent" : Theme.base
     font.family: Theme.fontSans
@@ -363,6 +363,12 @@ ApplicationWindow {
                 push("pages/AnimeDetails.qml", { sourceUrl: entry.sourceUrl, summary: entry, autoResume: true })
             } else if (entry.media === "anime") {
                 push("pages/AnimeDetails.qml", { anilistId: Router.anilistIdOf(entry), summary: entry, autoResume: true })
+            } else if (entry.media === "movie") {
+                push("pages/MovieDetails.qml", { movieId: String(entry.id || entry.sourceUrl || "").replace(/^movie:tmdb:/, ""), summary: entry, autoResume: true })
+            } else if (entry.media === "series") {
+                push("pages/SeriesDetails.qml", { seriesId: String(entry.id || entry.sourceUrl || "").replace(/^series:tmdb:/, ""), summary: entry, autoResume: true })
+            } else if (entry.media === "game") {
+                push("pages/GameDetails.qml", { gameId: String(entry.id || entry.sourceUrl || "").replace(/^game:rawg:/, ""), summary: entry })
             } else if (entry.media === "novel") {
                 push("pages/NovelDetails.qml", props)
             } else {
@@ -439,7 +445,7 @@ ApplicationWindow {
 
             Repeater {
                 id: sectionRepeater
-                model: ["home", "comics", "novels", "anime", "music", "library", "history", "activity", "latest", "downloads", "settings"]
+                model: ["home", "comics", "novels", "anime", "movies", "series", "games", "music", "library", "history", "activity", "latest", "downloads", "settings"]
                 delegate: Loader {
                     id: sectionLoader
                     required property string modelData
@@ -469,6 +475,9 @@ ApplicationWindow {
                                 case "comics": return "pages/ComicsPage.qml"
                                 case "novels": return "pages/NovelsPage.qml"
                                 case "anime": return "pages/AnimePage.qml"
+                                case "movies": return "pages/MoviesPage.qml"
+                                case "series": return "pages/SeriesPage.qml"
+                                case "games": return "pages/GamesPage.qml"
                                 case "music": return "pages/MusicPage.qml"
                                 case "library": return "pages/LibraryPage.qml"
                                 case "history": return "pages/HistoryPage.qml"
@@ -733,7 +742,7 @@ ApplicationWindow {
         id: themeConfirm
         heading: qsTr("Use this theme?")
         message: decodeURIComponent(String(window.pendingTheme).replace(/^.*\//, ""))
-            + qsTr(" replaces your custom theme and switches SCANCORE to it.")
+            + qsTr(" replaces your custom theme and switches ANTICORE to it.")
         confirmText: qsTr("Use theme")
         onConfirmed: window.importTheme(window.pendingTheme)
     }
@@ -780,8 +789,8 @@ ApplicationWindow {
     // soon after the app leaves the screen. Settings → Library has it later.
     ConfirmDialog {
         id: batteryAsk
-        heading: qsTr("Let SCANCORE run in the background?")
-        message: qsTr("Android's battery optimisation closes SCANCORE soon after you leave it, so new chapters are not checked, downloads pause and reading aloud stops. Android will ask you to allow it; you can change it later in Settings → Library.")
+        heading: qsTr("Let ANTICORE run in the background?")
+        message: qsTr("Android's battery optimisation closes ANTICORE soon after you leave it, so new chapters are not checked, downloads pause and reading aloud stops. Android will ask you to allow it; you can change it later in Settings → Library.")
         confirmText: qsTr("Allow")
         onConfirmed: App.askBatteryUnrestricted()
     }
@@ -835,6 +844,9 @@ ApplicationWindow {
     Shortcut { sequences: Keymap.sequences("comics"); onActivated: shell.goSection("comics") }
     Shortcut { sequences: Keymap.sequences("novels"); onActivated: shell.goSection("novels") }
     Shortcut { sequences: Keymap.sequences("anime"); onActivated: shell.goSection("anime") }
+    Shortcut { sequences: Keymap.sequences("movies"); onActivated: shell.goSection("movies") }
+    Shortcut { sequences: Keymap.sequences("series"); onActivated: shell.goSection("series") }
+    Shortcut { sequences: Keymap.sequences("games"); onActivated: shell.goSection("games") }
     Shortcut { sequences: Keymap.sequences("library"); onActivated: shell.goSection("library") }
     Shortcut { sequences: Keymap.sequences("history"); onActivated: shell.goSection("history") }
     Shortcut { sequences: Keymap.sequences("activity"); onActivated: shell.goSection("activity") }

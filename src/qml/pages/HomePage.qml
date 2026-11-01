@@ -13,11 +13,17 @@ Item {
     readonly property bool comicsOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "comics") }
     readonly property bool animeOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "anime") }
     readonly property bool novelsOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "novels") }
+    readonly property bool moviesOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "movies") }
+    readonly property bool seriesOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "series") }
+    readonly property bool gamesOn: { App.dependOn(PageLayout.revision); return !PageLayout.isRemoved("home", "games") }
     // Only a change to the added shelves rebuilds them (not moving one).
     readonly property string extrasJson: { App.dependOn(PageLayout.revision); return JSON.stringify(PageLayout.extras("home")) }
     property var latestTask: comicsOn ? Comics.latest(30) : null
     property var animeTask: animeOn ? Anime.home() : null
     property var novelsTask: novelsOn ? Novels.discover() : null
+    property var moviesTask: moviesOn ? Movies.home() : null
+    property var seriesTask: seriesOn ? Series.home() : null
+    property var gamesTask: gamesOn ? Games.home() : null
 
     // The last results, kept while a refresh runs.
     property var history: []
@@ -62,7 +68,7 @@ Item {
         column: column
         editing: page.editing
         removable: true
-        defaults: ["greeting", "resume", "continue", "story", "updates", "comics", "anime", "novels"]
+        defaults: ["greeting", "resume", "continue", "story", "updates", "comics", "novels", "anime", "movies", "series", "games"]
     }
 
     function greeting() {
@@ -337,6 +343,52 @@ Item {
                     error: page.animeTask && !page.animeTask.loading ? page.animeTask.error : ""
                     onRetry: page.animeTask = Anime.home()
                     subtitleFor: (it) => [it.format, it.year].filter(Boolean).join(" · ")
+                    onOpened: (it, cover) => Router.openSeries(it, cover)
+                }
+            }
+
+
+            PageSection {
+                arranger: layout
+                key: "movies"
+                label: qsTr("Movies")
+                Shelf {
+                    title: qsTr("Trending movies")
+                    items: page.moviesTask && page.moviesTask.ok ? page.moviesTask.result.trending : []
+                    loading: page.moviesTask ? page.moviesTask.loading : false
+                    error: page.moviesTask && !page.moviesTask.loading ? page.moviesTask.error : ""
+                    actionText: qsTr("More")
+                    onAction: Router.go("movies")
+                    onOpened: (it, cover) => Router.openSeries(it, cover)
+                }
+            }
+
+            PageSection {
+                arranger: layout
+                key: "series"
+                label: qsTr("Series")
+                Shelf {
+                    title: qsTr("Trending TV series")
+                    items: page.seriesTask && page.seriesTask.ok ? page.seriesTask.result.trending : []
+                    loading: page.seriesTask ? page.seriesTask.loading : false
+                    error: page.seriesTask && !page.seriesTask.loading ? page.seriesTask.error : ""
+                    actionText: qsTr("More")
+                    onAction: Router.go("series")
+                    onOpened: (it, cover) => Router.openSeries(it, cover)
+                }
+            }
+
+            PageSection {
+                arranger: layout
+                key: "games"
+                label: qsTr("Games")
+                Shelf {
+                    title: qsTr("Popular games")
+                    items: page.gamesTask && page.gamesTask.ok ? page.gamesTask.result.popular : []
+                    loading: page.gamesTask ? page.gamesTask.loading : false
+                    error: page.gamesTask && !page.gamesTask.loading ? page.gamesTask.error : ""
+                    actionText: qsTr("More")
+                    onAction: Router.go("games")
                     onOpened: (it, cover) => Router.openSeries(it, cover)
                 }
             }

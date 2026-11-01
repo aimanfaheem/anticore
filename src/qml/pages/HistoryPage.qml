@@ -94,7 +94,9 @@ Item {
                 Segmented {
                     visible: !Theme.retro
                     options: [{ value: "", label: qsTr("All") }, { value: "comic", label: qsTr("Comics"), icon: "book-open" },
-                              { value: "novel", label: qsTr("Novels"), icon: "book-text" }, { value: "anime", label: qsTr("Anime"), icon: "tv" }]
+                              { value: "novel", label: qsTr("Novels"), icon: "book-text" }, { value: "anime", label: qsTr("Anime"), icon: "tv" },
+                              { value: "movie", label: qsTr("Movies"), icon: "film" }, { value: "series", label: qsTr("Series"), icon: "clapperboard" },
+                              { value: "game", label: qsTr("Games"), icon: "gamepad-2" }]
                     value: page.media
                     onPicked: (v) => page.media = v
                 }
@@ -104,7 +106,9 @@ Item {
                     width: parent.width
                     height: visible ? implicitHeight : 0
                     options: [{ value: "", label: qsTr("All") }, { value: "comic", label: qsTr("Comics") },
-                              { value: "novel", label: qsTr("Novels") }, { value: "anime", label: qsTr("Anime") }]
+                              { value: "novel", label: qsTr("Novels") }, { value: "anime", label: qsTr("Anime") },
+                              { value: "movie", label: qsTr("Movies") }, { value: "series", label: qsTr("Series") },
+                              { value: "game", label: qsTr("Games") }]
                     value: page.media
                     onPicked: (v) => page.media = v
                 }

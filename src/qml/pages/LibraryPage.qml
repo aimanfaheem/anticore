@@ -64,10 +64,16 @@ Item {
         : (categories.find(c => c.value === category) || { label: "" }).label
 
     readonly property bool checking: checkTask ? checkTask.loading : false
-    readonly property var mediaOptions: [{ value: "comic", label: qsTr("Comics"), icon: "book-open" },
-        { value: "novel", label: qsTr("Novels"), icon: "book-text" }, { value: "anime", label: qsTr("Anime"), icon: "tv" }]
+    readonly property var mediaOptions: [
+        { value: "comic", label: qsTr("Comics"), icon: "book-open" },
+        { value: "novel", label: qsTr("Novels"), icon: "book-text" },
+        { value: "anime", label: qsTr("Anime"), icon: "tv" },
+        { value: "movie", label: qsTr("Movies"), icon: "film" },
+        { value: "series", label: qsTr("Series"), icon: "clapperboard" },
+        { value: "game", label: qsTr("Games"), icon: "gamepad-2" }
+    ]
     readonly property var sortOptions: [{ value: "updates", label: qsTr("New chapters first") },
-        { value: "recent", label: media === "anime" ? qsTr("Recently watched") : qsTr("Recently read") },
+        { value: "recent", label: media === "anime" || media === "movie" || media === "series" ? qsTr("Recently watched") : media === "game" ? qsTr("Recently played") : qsTr("Recently read") },
         { value: "added", label: qsTr("Recently added") }, { value: "title", label: qsTr("Title A–Z") },
         { value: "unread", label: media === "anime" ? qsTr("Most unwatched") : qsTr("Most unread") }]
     readonly property var viewOptions: [{ value: "grid", icon: "layout-grid", label: qsTr("Grid") },

@@ -23,16 +23,19 @@ Popup {
             out.push({ group: qsTr("Search"), icon: "book-open", label: qsTr("Search comics for “") + q + "”", run: () => searchIn("comics", q) })
             out.push({ group: qsTr("Search"), icon: "book-text", label: qsTr("Search novels for “") + q + "”", run: () => searchIn("novels", q) })
             out.push({ group: qsTr("Search"), icon: "tv", label: qsTr("Search anime for “") + q + "”", run: () => searchIn("anime", q) })
+            out.push({ group: qsTr("Search"), icon: "film", label: qsTr("Search movies for “") + q + "”", run: () => searchIn("movies", q) })
+            out.push({ group: qsTr("Search"), icon: "clapperboard", label: qsTr("Search series for “") + q + "”", run: () => searchIn("series", q) })
+            out.push({ group: qsTr("Search"), icon: "gamepad-2", label: qsTr("Search games for “") + q + "”", run: () => searchIn("games", q) })
         }
         const lower = q.toLowerCase()
         for (const entry of recent) {
             if (out.length > 14) break
             if (lower && !(entry.title || "").toLowerCase().includes(lower)) continue
-            out.push({ group: qsTr("Recent"), icon: entry.media === "anime" ? "tv" : entry.media === "novel" ? "book-text" : "book-open",
+            out.push({ group: qsTr("Recent"), icon: entry.media === "anime" ? "tv" : entry.media === "movie" ? "film" : entry.media === "series" ? "clapperboard" : entry.media === "game" ? "gamepad-2" : entry.media === "novel" ? "book-text" : "book-open",
                        label: entry.title, detail: entry.unitTitle || "", cover: entry.cover, run: () => Router.resume(entry) })
         }
         const pages = [["home", "Home", "house"], ["comics", qsTr("Comics"), "book-open"], ["novels", qsTr("Novels"), "book-text"],
-                       ["anime", qsTr("Anime"), "tv"], ["library", qsTr("Library"), "library"], ["history", qsTr("History"), "history"],
+                       ["anime", qsTr("Anime"), "tv"], ["movies", qsTr("Movies"), "film"], ["series", qsTr("Series"), "clapperboard"], ["games", qsTr("Games"), "gamepad-2"], ["library", qsTr("Library"), "library"], ["history", qsTr("History"), "history"],
                        ["activity", qsTr("Activity"), "activity"], ["latest", qsTr("Latest"), "flame"],
                        ["downloads", qsTr("Downloads"), "download"], ["settings", qsTr("Settings"), "settings"]]
         for (const [key, label, icon] of pages)

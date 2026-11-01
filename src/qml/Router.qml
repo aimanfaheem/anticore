@@ -15,7 +15,7 @@ QtObject {
     function sectionShown(section) {
         // Music is a preview, turned on in Settings → Interface.
         if (section === "music") return App.settings.musicSection === true
-        const media = { comics: "comic", novels: "novel", anime: "anime" }[section]
+        const media = { comics: "comic", novels: "novel", anime: "anime", movies: "movie", series: "series", games: "game" }[section]
         if (!media) return true
         const shown = Array.from(App.settings.shownMedia || [])
         return shown.length === 0 || shown.indexOf(media) >= 0
@@ -23,16 +23,16 @@ QtObject {
     // Shows only these media (["comic", "novel", "anime"], at least one):
     // the tabs and sidebar, Home's sections and Retro's hub follow.
     function setShownMedia(media) {
-        const list = ["comic", "novel", "anime"].filter(m => media.indexOf(m) >= 0)
+        const list = ["comic", "novel", "anime", "movie", "series", "game"].filter(m => media.indexOf(m) >= 0)
         if (list.length === 0) return
         App.setSetting("shownMedia", list)
-        const sections = { comic: "comics", novel: "novels", anime: "anime" }
-        for (const kind of ["comic", "novel", "anime"])
+        const sections = { comic: "comics", novel: "novels", anime: "anime", movie: "movies", series: "series", game: "games" }
+        for (const kind of ["comic", "novel", "anime", "movie", "series", "game"])
             PageLayout.setRemoved("home", sections[kind], list.indexOf(kind) < 0)
-        const kinds = { comics: "comic", novels: "novel", anime: "anime" }
+        const kinds = { comics: "comic", novels: "novel", anime: "anime", movies: "movie", series: "series", games: "game" }
         const current = Retro.sections().map(s => s.key)
         const wanted = current.filter(k => !kinds[k] || list.indexOf(kinds[k]) >= 0)
-        for (const k of ["comics", "novels", "anime"])
+        for (const k of ["comics", "novels", "anime", "movies", "series", "games"])
             if (list.indexOf(kinds[k]) >= 0 && wanted.indexOf(k) < 0) wanted.push(k)
         Retro.setSections(wanted)
     }
@@ -153,11 +153,21 @@ QtObject {
             shell.push("pages/AnimeDetails.qml", { sourceUrl: item.sourceUrl || item.url, summary: item }, fromCover, item.cover)
         else if (item.media === "anime")
             shell.push("pages/AnimeDetails.qml", { anilistId: anilistIdOf(item), summary: item }, fromCover, item.cover)
+        else if (item.media === "movie")
+            shell.push("pages/MovieDetails.qml", { movieId: String(item.id || item.sourceUrl || "").replace(/^movie:tmdb:/, ""), summary: item }, fromCover, item.cover)
+        else if (item.media === "series")
+            shell.push("pages/SeriesDetails.qml", { seriesId: String(item.id || item.sourceUrl || "").replace(/^series:tmdb:/, ""), summary: item }, fromCover, item.cover)
+        else if (item.media === "game")
+            shell.push("pages/GameDetails.qml", { gameId: String(item.id || item.sourceUrl || "").replace(/^game:rawg:/, ""), summary: item }, fromCover, item.cover)
         else if (item.media === "novel")
             shell.push("pages/NovelDetails.qml", { url: item.sourceUrl || item.url, summary: item }, fromCover, item.cover)
         else
             shell.push("pages/ComicDetails.qml", { url: item.sourceUrl || item.url, summary: item }, fromCover, item.cover)
     }
+
+    function openMovieBrowse(filters) { if (shell) shell.push("pages/MoviesPage.qml", { initialFilters: filters || {} }) }
+    function openSeriesBrowse(filters) { if (shell) shell.push("pages/SeriesPage.qml", { initialFilters: filters || {} }) }
+    function openGamesBrowse(filters) { if (shell) shell.push("pages/GamesPage.qml", { initialFilters: filters || {} }) }
 
     function openComicReader(series, chapters, index) { openReader("pages/ComicReader.qml", series, chapters, index) }
     function openNovelReader(series, chapters, index) { openReader("pages/NovelReader.qml", series, chapters, index) }

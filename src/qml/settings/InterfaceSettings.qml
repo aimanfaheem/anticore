@@ -401,7 +401,7 @@ SettingsPane {
             ScButton {
                 text: qsTr("Reset all")
                 variant: "ghost"
-                onClicked: ["home", "comics", "comics-top", "novels", "novels-top", "anime"].forEach(p => PageLayout.reset(p))
+                onClicked: ["home", "comics", "comics-top", "novels", "novels-top", "anime", "movies", "series", "games"].forEach(p => PageLayout.reset(p))
             }
         }
     }
