@@ -1,0 +1,138 @@
+name: Windows Dev Build
+
+on:
+  push:
+    branches:
+      - feature/movies-series-games
+  workflow_dispatch:
+
+concurrency:
+  group: windows-dev-build-${{ github.ref }}
+  cancel-in-progress: true
+
+env:
+  QT_VERSION: '6.10.3'
+  QT_MODULES: 'qtwebengine qtwebview qtwebchannel qtpositioning qtimageformats qtpdf qtspeech qtmultimedia'
+
+jobs:
+  build-windows:
+    name: Build ANTICORE (Windows x64)
+    runs-on: windows-2022
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v5
+
+      - name: Setup MSVC
+        uses: ilammy/msvc-dev-cmd@v1
+
+      - name: Install Qt
+        uses: jurplel/install-qt-action@v4
+        with:
+          version: ${{ env.QT_VERSION }}
+          modules: ${{ env.QT_MODULES }}
+          cache: true
+
+      - name: Setup Compiler Cache
+        uses: hendrikmuhs/ccache-action@v1.2
+        with:
+          key: dev-build-windows-${{ github.sha }}
+          restore-keys: dev-build-windows-
+          max-size: 500M
+
+      - name: Configure CMake
+        shell: pwsh
+        run: |
+          cmake -S . -B build -G Ninja `
+            -DCMAKE_BUILD_TYPE=Release `
+            -DSCANCORE_BUILD_TESTS=OFF `
+            -DSCANCORE_WITH_EXTENSION_HOST=OFF `
+            -DSCANCORE_WITH_AVIF=OFF `
+            -DCMAKE_C_COMPILER_LAUNCHER=ccache `
+            -DCMAKE_CXX_COMPILER_LAUNCHER=ccache
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "CMake configuration failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
+
+      - name: Build Application
+        shell: pwsh
+        run: |
+          cmake --build build --config Release --parallel
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "CMake build failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
+
+      - name: Locate Executable and Deploy Qt Dependencies
+        shell: pwsh
+        run: |
+          # 1. Locate the compiled executable
+          $targetExe = "build\bin\scancore.exe"
+          if (-not (Test-Path $targetExe)) {
+            Write-Host "Executable not found at build\bin\scancore.exe; searching build tree..."
+            $found = Get-ChildItem -Path build -Filter "scancore.exe" -Recurse | Select-Object -First 1
+            if ($found) {
+              $targetExe = $found.FullName
+            } else {
+              Write-Error "Build verification failed: scancore.exe was not produced in the build directory!"
+              exit 1
+            }
+          }
+          Write-Host "Located compiled executable at: $targetExe"
+
+          # 2. Prepare clean deployment directory
+          $deployDir = "artifact\ANTICORE-windows-x64"
+          if (Test-Path $deployDir) {
+            Remove-Item -Recurse -Force $deployDir
+          }
+          New-Item -ItemType Directory -Force $deployDir | Out-Null
+
+          # 3. Copy executable into deployment directory
+          Copy-Item -Path $targetExe -Destination "$deployDir\scancore.exe" -Force
+
+          # 4. Run windeployqt to collect all runtime DLLs, plugins, and QML modules
+          Write-Host "Running windeployqt..."
+          windeployqt --release --qmldir src\qml --no-translations --compiler-runtime "$deployDir\scancore.exe"
+          if ($LASTEXITCODE -ne 0) {
+            Write-Error "windeployqt failed with exit code $LASTEXITCODE"
+            exit $LASTEXITCODE
+          }
+
+          # 5. Ensure WebView2 backend plugin is present (needed for web view / video fallback)
+          $qtWebview = "$env:QT_ROOT_DIR\plugins\webview\qtwebview_webview2.dll"
+          if (Test-Path $qtWebview) {
+            New-Item -ItemType Directory -Force "$deployDir\plugins\webview" | Out-Null
+            Copy-Item -Path $qtWebview -Destination "$deployDir\plugins\webview\" -Force
+            New-Item -ItemType Directory -Force "$deployDir\webview" | Out-Null
+            Copy-Item -Path $qtWebview -Destination "$deployDir\webview\" -Force
+          }
+
+          # 6. Add quick launcher batch script
+          $launcherPath = "$deployDir\Run-Anticore.bat"
+          $launcherLines = "@echo off", "start `"`" `"`%~dp0scancore.exe`""
+          Set-Content -Path $launcherPath -Value $launcherLines -Encoding ASCII
+
+          # 7. Verification of deployment completeness
+          $criticalFiles = @(
+            "$deployDir\scancore.exe",
+            "$deployDir\Qt6Core.dll",
+            "$deployDir\Qt6Gui.dll",
+            "$deployDir\Qt6Quick.dll",
+            "$deployDir\Qt6Widgets.dll",
+            "$deployDir\platforms\qwindows.dll"
+          )
+          foreach ($file in $criticalFiles) {
+            if (-not (Test-Path $file)) {
+              Write-Error "Deployment verification failed: critical file '$file' is missing!"
+              exit 1
+            }
+          }
+          Write-Host "Deployment package successfully created and verified at $deployDir"
+
+      - name: Upload ANTICORE Build Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ANTICORE-windows-x64
+          path: artifact/ANTICORE-windows-x64/
+          if-no-files-found: error
