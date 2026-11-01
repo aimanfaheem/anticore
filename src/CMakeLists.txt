@@ -100,7 +100,7 @@ set_target_properties(scancore PROPERTIES
     OUTPUT_NAME scancore
     RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
     MACOSX_BUNDLE_GUI_IDENTIFIER com.mediumdev.scancore
-    MACOSX_BUNDLE_BUNDLE_NAME SCANCORE
+    MACOSX_BUNDLE_BUNDLE_NAME ANTICORE
     MACOSX_BUNDLE_BUNDLE_VERSION ${PROJECT_VERSION}
     MACOSX_BUNDLE_SHORT_VERSION_STRING ${PROJECT_VERSION}
     MACOSX_BUNDLE_ICON_FILE scancore.icns
@@ -149,6 +149,9 @@ qt_add_qml_module(scancore
         app/SiteNotifications.cpp app/SiteNotifications.h
         app/Notifications.cpp app/Notifications.h
         app/Music.cpp app/Music.h
+        app/Movies.cpp app/Movies.h
+        app/Series.cpp app/Series.h
+        app/Games.cpp app/Games.h
         app/AudioPlayer.cpp app/AudioPlayer.h
         app/Platform.cpp app/Platform.h
         app/KeepAwake.cpp app/KeepAwake.h
